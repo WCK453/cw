@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security, Regulatory & Infrastructure Connections</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #1a2980, #26d0ce);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .concept-card {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .concept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+        
+        .security-card {
+            border-top: 6px solid #e74c3c;
+        }
+        
+        .regulatory-card {
+            border-top: 6px solid #3498db;
+        }
+        
+        .infrastructure-card {
+            border-top: 6px solid #2ecc71;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .icon {
+            font-size: 2.2rem;
+            margin-right: 15px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .security-icon {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+        }
+        
+        .regulatory-icon {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+        }
+        
+        .infrastructure-icon {
+            background-color: rgba(46, 204, 113, 0.1);
+            color: #2ecc71;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+        }
+        
+        .definition {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        
+        .key-points h3, .examples h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .key-points ul, .examples ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .key-points li, .examples li {
+            margin-bottom: 8px;
+        }
+        
+        .diagram-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            margin-top: 20px;
+        }
+        
+        .diagram-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        
+        .diagram-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 400px;
+        }
+        
+        .triangle-diagram {
+            width: 350px;
+            height: 350px;
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .triangle-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: white;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: bold;
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .triangle-corner {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 15px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .corner-1 {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(231, 76, 60, 0.9);
+            color: white;
+        }
+        
+        .corner-2 {
+            bottom: 20px;
+            left: 20px;
+            background-color: rgba(52, 152, 219, 0.9);
+            color: white;
+        }
+        
+        .corner-3 {
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(46, 204, 113, 0.9);
+            color: white;
+        }
+        
+        .connection-line {
+            position: absolute;
+            background-color: #7f8c8d;
+            height: 3px;
+            transform-origin: 0 0;
+        }
+        
+        .connection-1 {
+            width: 120px;
+            top: 140px;
+            left: 175px;
+            transform: rotate(120deg);
+        }
+        
+        .connection-2 {
+            width: 120px;
+            top: 140px;
+            left: 175px;
+            transform: rotate(240deg);
+        }
+        
+        .connection-3 {
+            width: 120px;
+            top: 140px;
+            left: 175px;
+            transform: rotate(0deg);
+        }
+        
+        .interaction-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .scenario-box {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+        }
+        
+        .scenario-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .scenario-title i {
+            margin-right: 10px;
+        }
+        
+        .scenario-content {
+            margin-bottom: 20px;
+        }
+        
+        .scenario-step {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .step-desc {
+            color: #555;
+        }
+        
+        .highlight {
+            background-color: #fff9e6;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #f1c40f;
+            margin-top: 20px;
+        }
+        
+        .highlight h3 {
+            color: #d35400;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            .content-row {
+                flex-direction: column;
+            }
+            
+            .triangle-diagram {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .triangle-corner {
+                width: 120px;
+                height: 120px;
+                font-size: 0.9rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Security, Regulatory & Infrastructure</h1>
+            <p class="subtitle">Understanding the interconnected framework that forms the backbone of modern organizations and societies</p>
+        </header>
+        
+        <div class="content-row">
+            <div class="concept-card security-card">
+                <div class="card-header">
+                    <div class="icon security-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h2>Security</h2>
+                </div>
+                <div class="definition">
+                    <p><strong>Security</strong> is the state of being protected from harm, danger, loss, or threat. It encompasses measures taken to ensure safety, confidentiality, integrity, and availability of people, assets, information, or systems.</p>
+                </div>
+                <div class="key-points">
+                    <h3>Key Principles (CIA Triad):</h3>
+                    <ul>
+                        <li><strong>Confidentiality:</strong> Keeping information private and accessible only to authorized individuals</li>
+                        <li><strong>Integrity:</strong> Ensuring information isn't altered improperly or tampered with</li>
+                        <li><strong>Availability:</strong> Ensuring systems and data are accessible when needed</li>
+                    </ul>
+                </div>
+                <div class="examples">
+                    <h3>Examples:</h3>
+                    <ul>
+                        <li>Firewalls and encryption for data protection</li>
+                        <li>Access control systems for physical security</li>
+                        <li>Disaster recovery plans for business continuity</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="concept-card regulatory-card">
+                <div class="card-header">
+                    <div class="icon regulatory-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h2>Regulatory</h2>
+                </div>
+                <div class="definition">
+                    <p><strong>Regulatory</strong> refers to the system of rules, laws, and standards established by authorities to govern behavior, activities, industries, or markets. It ensures entities operate safely, fairly, and in compliance with legal and ethical standards.</p>
+                </div>
+                <div class="key-points">
+                    <h3>Key Components:</h3>
+                    <ul>
+                        <li><strong>Regulatory Bodies:</strong> Government agencies that create and enforce rules (SEC, FDA, EPA)</li>
+                        <li><strong>Compliance:</strong> Adherence to laws, regulations, and guidelines</li>
+                        <li><strong>Standards:</strong> Specific requirements or restrictions imposed by authorities</li>
+                    </ul>
+                </div>
+                <div class="examples">
+                    <h3>Examples:</h3>
+                    <ul>
+                        <li>GDPR for data privacy in the EU</li>
+                        <li>HIPAA for healthcare data protection in the US</li>
+                        <li>SOX for corporate financial reporting</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="concept-card infrastructure-card">
+                <div class="card-header">
+                    <div class="icon infrastructure-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h2>Infrastructure</h2>
+                </div>
+                <div class="definition">
+                    <p><strong>Infrastructure</strong> refers to the fundamental physical and organizational systems, facilities, and structures needed for a society, economy, or organization to function. It provides the essential foundation for economic activity, public services, and daily life.</p>
+                </div>
+                <div class="key-points">
+                    <h3>Key Categories:</h3>
+                    <ul>
+                        <li><strong>Physical:</strong> Roads, power grids, water systems, buildings</li>
+                        <li><strong>Digital:</strong> Internet networks, data centers, cloud platforms</li>
+                        <li><strong>Social:</strong> Healthcare systems, education, emergency services</li>
+                    </ul>
+                </div>
+                <div class="examples">
+                    <h3>Examples:</h3>
+                    <ul>
+                        <li>Electrical grids and power plants</li>
+                        <li>Telecommunications networks and data centers</li>
+                        <li>Transportation systems (roads, railways, airports)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="diagram-section">
+            <h2 class="diagram-title">How They Connect: The Interdependence Triangle</h2>
+            <div class="diagram-container">
+                <div class="triangle-diagram">
+                    <div class="triangle-center">
+                        <div>Resilient</div>
+                        <div>System</div>
+                    </div>
+                    
+                    <div class="triangle-corner corner-1">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Security</h3>
+                        <p>Protection & Safeguards</p>
+                    </div>
+                    
+                    <div class="triangle-corner corner-2">
+                        <i class="fas fa-balance-scale"></i>
+                        <h3>Regulatory</h3>
+                        <p>Rules & Standards</p>
+                    </div>
+                    
+                    <div class="triangle-corner corner-3">
+                        <i class="fas fa-network-wired"></i>
+                        <h3>Infrastructure</h3>
+                        <p>Foundation & Assets</p>
+                    </div>
+                    
+                    <div class="connection-line connection-1"></div>
+                    <div class="connection-line connection-2"></div>
+                    <div class="connection-line connection-3"></div>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                <h3>The Core Connection:</h3>
+                <p><strong>Infrastructure</strong> is the foundation that needs to be secured and regulated. <strong>Regulatory</strong> frameworks define the rules and standards that must be followed. <strong>Security</strong> implements the protections needed to safeguard infrastructure and ensure regulatory compliance. Together, they create a resilient system where each component depends on and reinforces the others.</p>
+            </div>
+        </div>
+        
+        <div class="interaction-section">
+            <div class="scenario-box">
+                <h3 class="scenario-title"><i class="fas fa-hospital"></i> Healthcare System Scenario</h3>
+                <div class="scenario-content">
+                    <div class="scenario-step">
+                        <div class="step-title">Infrastructure (The Foundation)</div>
+                        <div class="step-desc">Hospital buildings, medical equipment, patient records systems, communication networks</div>
+                    </div>
+                    <div class="scenario-step">
+                        <div class="step-title">Regulatory (The Rules)</div>
+                        <div class="step-desc">HIPAA mandates patient data privacy, safety regulations for medical devices, accreditation standards</div>
+                    </div>
+                    <div class="scenario-step">
+                        <div class="step-title">Security (The Protection)</div>
+                        <div class="step-desc">Encrypted patient records, access controls to sensitive areas, backup power systems, staff training on privacy</div>
+                    </div>
+                </div>
+                <p><strong>Connection:</strong> The hospital's <em>infrastructure</em> must be designed and operated to meet <em>regulatory</em> requirements, which is achieved through implementing appropriate <em>security</em> measures.</p>
+            </div>
+            
+            <div class="scenario-box">
+                <h3 class="scenario-title"><i class="fas fa-university"></i> Financial System Scenario</h3>
+                <div class="scenario-content">
+                    <div class="scenario-step">
+                        <div class="step-title">Infrastructure (The Foundation)</div>
+                        <div class="step-desc">Bank branches, ATMs, core banking servers, payment networks (Visa/Mastercard)</div>
+                    </div>
+                    <div class="scenario-step">
+                        <div class="step-title">Regulatory (The Rules)</div>
+                        <div class="step-desc">Bank Secrecy Act, Anti-Money Laundering laws, SEC regulations, PCI DSS for payment cards</div>
+                    </div>
+                    <div class="scenario-step">
+                        <div class="step-title">Security (The Protection)</div>
+                        <div class="step-desc">Fraud detection algorithms, vaults and physical security, encryption for transactions, KYC checks</div>
+                    </div>
+                </div>
+                <p><strong>Connection:</strong> Financial <em>infrastructure</em> must comply with strict <em>regulatory</em> frameworks, requiring comprehensive <em>security</em> controls to protect assets and ensure compliance.</p>
+            </div>
+        </div>
+        
+        <div class="highlight">
+            <h3>Key Takeaways:</h3>
+            <ul>
+                <li><strong>Infrastructure</strong> without proper <strong>security</strong> is vulnerable to threats and failures.</li>
+                <li><strong>Security</strong> without <strong>regulatory</strong> guidance may be inadequate or misdirected.</li>
+                <li><strong>Regulatory</strong> requirements without tangible <strong>infrastructure</strong> to apply them to are meaningless.</li>
+                <li>The most resilient systems have all three elements working in harmony: well-designed <strong>infrastructure</strong> that follows relevant <strong>regulations</strong> through effective <strong>security</strong> measures.</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>Understanding the connections between Security, Regulatory, and Infrastructure is essential for building resilient organizations and societies.</p>
+            <p>© 2023 | Educational Resource | Security-Regulatory-Infrastructure Framework</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Simple animation for the diagram connections
+        document.addEventListener('DOMContentLoaded', function() {
+            const connectionLines = document.querySelectorAll('.connection-line');
+            
+            // Animate connection lines one by one
+            connectionLines.forEach((line, index) => {
+                setTimeout(() => {
+                    line.style.transition = 'all 0.8s ease';
+                    line.style.backgroundColor = '#e74c3c';
+                    
+                    // Reset color after animation
+                    setTimeout(() => {
+                        line.style.backgroundColor = '#7f8c8d';
+                    }, 2000);
+                }, 1000 + (index * 800));
+            });
+            
+            // Add hover effects to concept cards
+            const conceptCards = document.querySelectorAll('.concept-card');
+            conceptCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('.icon');
+                    icon.style.transform = 'scale(1.1) rotate(5deg)';
+                    icon.style.transition = 'transform 0.3s ease';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('.icon');
+                    icon.style.transform = 'scale(1) rotate(0deg)';
+                });
+            });
+            
+            // Add click interaction to diagram corners
+            const corners = document.querySelectorAll('.triangle-corner');
+            corners.forEach(corner => {
+                corner.addEventListener('click', function() {
+                    const concept = this.querySelector('h3').textContent;
+                    alert(`You clicked on ${concept}! This represents one of the three pillars in the interconnected system.`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
